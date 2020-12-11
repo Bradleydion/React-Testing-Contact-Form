@@ -6,8 +6,9 @@ const ContactForm = () => {
   const { register, errors, handleSubmit } = useForm({
     mode: "onBlur",
   });
-  const onSubmit = (data) => {
-    setData(data);
+  const onSubmit = data => {
+    data.persist();
+    setData(data); 
   };
 
   return (
@@ -16,9 +17,10 @@ const ContactForm = () => {
         <div>
           <label htmlFor="firstName">First Name*</label>
           <input
+            id="firstName"
             name="firstName"
             placeholder="Edd"
-            ref={register({ required: true, maxLength: 3 })}
+            ref={register({ required: true, maxLength: 10 })}
           />
           {errors.firstName && (
             <p>Looks like there was an error: {errors.firstName.type}</p>
@@ -43,7 +45,7 @@ const ContactForm = () => {
             Email*
           </label>
           <input name="email" 
-            id="lastName"
+            id="email"
             placeholder="bluebill1049@hotmail.com"
             ref={register({ required: true })} 
           />
@@ -64,7 +66,8 @@ const ContactForm = () => {
             {JSON.stringify(data, null, 2)}
           </pre>
         )}
-        <input type="submit" />
+        {/* <input type="submit" /> */}
+        <button name="submit" type="submit" onClick={onSubmit}> Submit </button> 
       </form>
     </div>
   );
