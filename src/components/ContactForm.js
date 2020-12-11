@@ -6,8 +6,7 @@ const ContactForm = () => {
   const { register, errors, handleSubmit } = useForm({
     mode: "onBlur",
   });
-  const onSubmit = data => {
-    data.persist();
+  const onSubmit = (data) => {
     setData(data); 
   };
 
